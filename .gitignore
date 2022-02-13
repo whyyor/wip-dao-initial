@@ -32,3 +32,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+#mnemonic files
+.secret
