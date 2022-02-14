@@ -94,7 +94,14 @@ module.exports = {
         }
     },
 
-    plugins: ['solidity-coverage']
+    plugins: ['solidity-coverage',
+        'truffle-plugin-verify'
+    ],
+
+    api_keys: {
+        etherscan: 'Y9CI1QUNFGGBZ6NTUTXZ85CWNSEXB1A8CJ'
+        //0x1617cE0Ab81a95013F28c6B06C8a51fc94B1EcD7
+    }
 
     // Truffle DB is currently disabled by default; to enable it, change enabled:
     // false to enabled: true. The default storage location can also be

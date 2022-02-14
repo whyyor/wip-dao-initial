@@ -1,7 +1,8 @@
 import Head from 'next/head'
 import Image from 'next/image'
 
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext } from 'react' //use state
+import {WalletContext} from '../lib/wallet' //importing wallet
 
 import EthName from '../components/EthName'
 import SendForm from '../components/SendForm'
@@ -10,7 +11,10 @@ import Price from '../components/Price'
 
 import metadata from '../public/data/metadata.json'
 
+
 function App() {
+  const {isConnected,accounts,connect} = useContext(WalletContext)
+
   const [toggleSendForm, setToggleSendForm] = useState(false)
 
   useEffect(() => {
@@ -38,11 +42,15 @@ function App() {
 
       <header>
         <h1>W<span>&mdash;</span>I<span>&mdash;</span>P</h1>
-
-        <nav>
+        {isConnected ? (
+            <nav className='connected'>
+                {accounts[0]}
+            </nav>
+        ) : ( <nav>
           {applyForWip}
-          <a href="#" className="primary-action">Connect wallet</a>
-        </nav>
+          <a href="#" className="primary-action" onClick={connect}>Connect wallet</a>
+        </nav> )}
+
       </header>
 
       <SendForm />

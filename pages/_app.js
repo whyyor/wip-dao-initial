@@ -1,9 +1,13 @@
 import '../styles/base.css'
 import '../styles/globals.css'
 
+import Wallet from '../lib/wallet'
+
 function MyApp({ Component, pageProps }) {
   return (
-    <Component {...pageProps} />
+      <Wallet>
+          <Component {...pageProps} />
+      </Wallet>
   )
 }
 
