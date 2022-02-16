@@ -13,7 +13,7 @@ import metadata from '../public/data/metadata.json'
 
 
 function App() {
-  const {isConnected,accounts,connect} = useContext(WalletContext)
+  const {isConnected,accounts,connect,balance} = useContext(WalletContext)
 
   const [toggleSendForm, setToggleSendForm] = useState(false)
 
@@ -44,7 +44,8 @@ function App() {
         <h1>W<span>&mdash;</span>I<span>&mdash;</span>P</h1>
         {isConnected ? (
             <nav className='connected'>
-                {accounts[0]}
+                <EthName address={accounts[0]} />
+                <Price base={balance} />
             </nav>
         ) : ( <nav>
           {applyForWip}
