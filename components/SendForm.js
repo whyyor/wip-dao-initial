@@ -1,11 +1,21 @@
 import { useState, useContext } from 'react'
+import { WalletContext } from '../lib/wallet'
 
 const SendForm = function ({}) {
   const [ethAddress, setEthAddress] = useState("")
   const [amount, setAmount] = useState("0")
 
+  const { accounts,contract,web3,fetchBalance } = useContext(WalletContext)
+
   const sendWip = async (event) => {
     // TODO!
+    if(accounts.length>0){
+        const cents = web3.utils.toWei(amount, 'ether')
+        await contract.methods.transfer(ethAddress, cents).send({
+            from:accounts[0]
+        })
+        await fetchBalance()
+    }
   }
 
   return (

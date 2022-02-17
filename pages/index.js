@@ -13,7 +13,7 @@ import metadata from '../public/data/metadata.json'
 
 
 function App() {
-  const {isConnected,accounts,connect,balance} = useContext(WalletContext)
+  const {isConnected,accounts,connect,balance,canPost,canComment} = useContext(WalletContext)
 
   const [toggleSendForm, setToggleSendForm] = useState(false)
 
@@ -46,6 +46,10 @@ function App() {
             <nav className='connected'>
                 <EthName address={accounts[0]} />
                 <Price base={balance} />
+                {canPost ? (<a href='#'>Post</a> ) : applyForWip}
+                {balance > 0 ? (
+                    <a href='#' onClick={toggleForm}>Send $WIP</a>
+                ) : ''}
             </nav>
         ) : ( <nav>
           {applyForWip}
